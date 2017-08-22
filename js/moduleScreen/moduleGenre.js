@@ -21,7 +21,7 @@ const options = () => {
 
 const nextButton = `<button class="genre-answer-send" type="submit">${data.buttons.answerButton}</button>`;
 
-const formGenre = `  <form class="genre">
+const formGenre = `<form class="genre">
 
   ${options()}
 

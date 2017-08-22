@@ -18,7 +18,7 @@ export default (state) => {
     <section class="main main--result">
       <section class="logo" title="Угадай мелодию"><h1>${data.logo}</h1></section>
 
-      ${content};
+      ${content}
 
       <span role="button" tabindex="0" class="main-replay">${data.buttons.repeatButton}</span>
     </section>

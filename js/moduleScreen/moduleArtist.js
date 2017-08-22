@@ -24,15 +24,13 @@ const titleArtist = `<h2 class="title main-title">${data.artist.title}</h2>`;
 const answerBlock = () => {
   let answers = [];
   for (let i = 1; i <= SHOW_ANSWER; i++) {
-    answers.push(`
-      <div class="main-answer-wrapper">
+    answers.push(`<div class="main-answer-wrapper">
       <input class="main-answer-r" type="radio" id="answer-${i}" name="answer" value="val-${i}" />
         <label class="main-answer" for="answer-${i}">
           <img class="main-answer-preview" src="">
           ${music[i].title}
         </label>
-      </div>
-    `);
+      </div>`);
   }
   return answers;
 };

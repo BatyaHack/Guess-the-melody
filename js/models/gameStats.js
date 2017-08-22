@@ -1,4 +1,4 @@
-import genres from './gameStats.js';
+import genres from './genres.js';
 
 export default Object.freeze({
   score: 0,
