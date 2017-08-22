@@ -1,4 +1,4 @@
-import {renderInMain} from './modules/moduleSwitchScreen.js';
-import welcome from './moduleScreen/moduleWelcome.js';
+import {renderInMain} from './modules/ScreenManager.js';
+import welcome from './Screens/Welcome.js';
 
-renderInMain(welcome);
+renderInMain(welcome());

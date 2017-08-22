@@ -1,6 +1,6 @@
-import getElementFromTemplate from '../utils.js';
-import {renderInMain} from '../modules/moduleSwitchScreen.js';
-import main from './moduleWelcome.js';
+import {getElementFromTemplate} from '../utils.js';
+import {renderInMain} from '../modules/ScreenManager.js';
+import main from './Welcome.js';
 import data from '../models/static.js';
 
 export default (state) => {
@@ -25,7 +25,7 @@ export default (state) => {
   `);
 
   screenElem.querySelector(`.main-replay`).addEventListener(`click`, (evt)=>{
-    renderInMain(main);
+    renderInMain(main());
   });
 
   return screenElem;
