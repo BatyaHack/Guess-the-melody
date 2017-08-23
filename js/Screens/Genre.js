@@ -45,7 +45,6 @@ export default () => {
 
   nextButton = screenElem.querySelector(`.genre-answer-send`);
   nextButton.disabled = true;
-  const getRandowAnswer = randomValue();
   const answers = Array.from(screenElem.querySelectorAll(`input[name='answer']`));
 
   answers.forEach((elem, index, array)=>{
@@ -56,11 +55,7 @@ export default () => {
   });
 
   nextButton.addEventListener(`click`, (evt) => {
-    // Очистка пользовательского выбора
-    answers.forEach((elem, index, array)=>{
-      elem.checked = false;
-    });
-    renderInMain(result(getRandowAnswer));
+    renderInMain(result(randomValue()));
   });
 
   return screenElem;
