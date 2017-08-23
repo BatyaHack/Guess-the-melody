@@ -65,6 +65,7 @@ $preview-spacing: 11px;
   border: solid 5px $color-text-dark;
   border-radius: $preview-size;
   box-sizing: border-box;
+  object-fit: cover;
   height: $preview-size;
   margin-bottom: $preview-spacing;
   overflow: hidden;

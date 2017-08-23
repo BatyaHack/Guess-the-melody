@@ -1,15 +1,6 @@
-import genres from './genres.js';
-
 export default Object.freeze({
   score: 0,
-  levelArtist: {
-    level: 0,
-    time: 0,
-    levelHistory: new Map()
-  },
-  levelGenre: {
-    genre: genres.indieRock,
-    optionsId: [],
-    answersId: []
-  }
+  life: 3,
+  level: 10,
+  time: 2,
 });
