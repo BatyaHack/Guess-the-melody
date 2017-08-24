@@ -6,6 +6,30 @@
   margin-right: 20px;
 }
 
+.player-control{
+  background: transparent;
+  border-color: transparent;
+  border-left-color: #ff9749;
+  border-style: solid;
+  border-width: 25px 0 25px 30px;
+  text-indent: -100em;
+  height: 53px;
+  width: 39px;
+  margin-left: -50px;
+  font-size: 0;
+}
+
+.player{
+  &--is-playing{
+    .player-control{
+      border-top: none;
+      border-bottom: none;
+      border-left: 15px solid #ff9749;
+      border-right: 15px solid #ff9749;
+    }
+  }
+}
+
 
 @keyframes fadein {
   0% { opacity: 0 }

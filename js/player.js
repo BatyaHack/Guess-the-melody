@@ -42,9 +42,9 @@ const destroyPlayer = (element, state) => {
 };
 
 
-window.initializePlayer = (element, file, autoplay = false, controllable = true) => {
+window.initializePlayer = (template, element, file, autoplay = false, controllable = true) => {
   let state = {};
-
+  console.log(document.querySelector(`template`).content);
   const content = document.querySelector(`template`)
     .content
     .querySelector(`.player`)
@@ -54,7 +54,10 @@ window.initializePlayer = (element, file, autoplay = false, controllable = true)
 
   player.onloadeddata = () => {
     if (controllable) {
-      button.onclick = () => switchState(state, player, content);
+      button.onclick = (evt) => {
+        evt.preventDefault();
+        switchState(state, player, content);
+      };
     }
 
     if (autoplay) {

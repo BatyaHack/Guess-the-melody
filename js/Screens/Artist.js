@@ -1,4 +1,4 @@
-import {getElementFromTemplate, musicMix, randomValue} from '../utils.js';
+import {getElementFromTemplate, getRandomMusic, randomValue} from '../utils.js';
 import {renderInMain} from '../modules/ScreenManager.js';
 import genre from './Genre.js';
 import data from '../models/static.js';
@@ -7,15 +7,14 @@ import svg from '../models/svg.js';
 
 
 export default () => {
+
   const SHOW_ANSWER = 3;
 
   const svgArtist = svg;
 
   const titleArtist = `<h2 class="title main-title">${data.artist.title}</h2>`;
 
-  let randomMusic = music.slice(0);
-  randomMusic.sort(musicMix);
-
+  let randomMusic = getRandomMusic(music, SHOW_ANSWER);
   const rightAnswer = randomMusic[randomValue(0, SHOW_ANSWER)];
 
   const answerBlock = () => {
@@ -45,16 +44,7 @@ export default () => {
 
       ${titleArtist}
 
-
-      <div class="player-wrapper">
-        <div class="player">
-          <audio src="${rightAnswer.resSrc}"></audio>
-          <button class="player-control">Play</button>
-          <div class="player-track">
-            <span class="player-status"></span>
-          </div>
-        </div>
-      </div>
+      <div class="player-wrapper"></div>
 
       ${formArtist}
 
@@ -62,7 +52,7 @@ export default () => {
   </section>
   `);
 
-
+  window.initializePlayer(screenElem, screenElem.querySelector(`.player-wrapper`), rightAnswer.resSrc);
   Array.from(screenElem.querySelectorAll(`.main-answer`)).forEach((elem, index, array) => {
     elem.addEventListener(`click`, (event)=>{
       renderInMain(genre());
@@ -72,3 +62,13 @@ export default () => {
   return screenElem;
 
 };
+
+// <div class="player-wrapper">
+//     <div class="player">
+//       <audio src="${rightAnswer.resSrc}"></audio>
+//       <button class="player-control">Play</button>
+//       <div class="player-track">
+//         <span class="player-status"></span>
+//       </div>
+//     </div>
+// </div>
