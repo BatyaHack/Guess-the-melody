@@ -15,24 +15,19 @@ export default () => {
 
   let nextButton = `<button class="genre-answer-send" type="submit">${data.buttons.answerButton}</button>`;
 
-  const options = () => {
-    const optionVar = [];
-    for (let i = 0; i < SHOW_NOTES; i++) {
-      // переделать под актуальные треки
-      optionVar.push(`<div class="genre-answer">
+  const options = randomMusic.map((elem, index, arr) => {
+    return `<div class="genre-answer">
         <div class="player-wrapper"></div>
-        <input type="checkbox" name="answer" value="answer-${i}" id="a-${i}">
-        <label class="genre-answer-check" for="a-${i}"></label>
-      </div>`);
-    }
-    return optionVar.join(``);
-  };
-
+        <input type="checkbox" name="answer" value="${elem.ganre}" id="${elem.trackID}">
+        <label class="genre-answer-check" for="${elem.trackID}"></label>
+      </div>`;
+  });
 
   const formGenre = `<form class="genre">
-    ${options()}
+    ${options.join(``)}
     ${nextButton}
     </form>`;
+
   const screenElem = getElementFromTemplate(`<section class="main main--level main--level-genre">
     ${svg}
     ${titleGenre}

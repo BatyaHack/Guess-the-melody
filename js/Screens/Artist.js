@@ -15,21 +15,17 @@ export default () => {
   let randomMusic = getRandomMusic(music, SHOW_ANSWER);
   const rightAnswer = randomMusic[randomValue(0, SHOW_ANSWER)];
 
-  const answerBlock = () => {
-    let answers = [];
-    for (let i = 0; i < SHOW_ANSWER; i++) {
-      answers.push(`<div class="main-answer-wrapper">
-        <input class="main-answer-r" type="radio" id="answer-${randomMusic[i].trackID}" name="answer" value="val-${randomMusic[i].trackID}" />
-          <label class="main-answer" for="answer-${randomMusic[i].trackID}">
-            <img class="main-answer-preview" src="${randomMusic[i].imgSrc}">
-            ${randomMusic[i].title}
-          </label>
-        </div>`);
-    }
-    return answers;
-  };
+  const answerBlock = randomMusic.map((elem, index, arr) => {
+    return `<div class="main-answer-wrapper">
+      <input class="main-answer-r" type="radio" id="answer-${elem.trackID}" name="answer" value="val-${elem.trackID}" />
+        <label class="main-answer" for="answer-${elem.trackID}">
+          <img class="main-answer-preview" src="${elem.imgSrc}">
+          ${elem.title}
+        </label>
+      </div>`;
+  });
 
-  const formArtist = `<form class="main-list">${answerBlock().join(``)}</form>`;
+  const formArtist = `<form class="main-list">${answerBlock.join(``)}</form>`;
 
   const screenElem = getElementFromTemplate(`
     <section class="main main--level main--level-artist">
@@ -54,13 +50,3 @@ export default () => {
   return screenElem;
 
 };
-
-// <div class="player-wrapper">
-//     <div class="player">
-//       <audio src="${rightAnswer.resSrc}"></audio>
-//       <button class="player-control">Play</button>
-//       <div class="player-track">
-//         <span class="player-status"></span>
-//       </div>
-//     </div>
-// </div>
