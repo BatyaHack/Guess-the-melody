@@ -4,6 +4,7 @@ import {renderInMain} from '../modules/ScreenManager.js';
 import result from './Result.js';
 import data from '../models/static.js';
 import music from '../models/music.js';
+import svg from '../models/svg.js';
 
 export default () => {
   const SHOW_NOTES = 4;
@@ -17,11 +18,9 @@ export default () => {
   const options = () => {
     const optionVar = [];
     for (let i = 0; i < SHOW_NOTES; i++) {
+      // переделать под актуальные треки
       optionVar.push(`<div class="genre-answer">
-
-        <div class="player-wrapper">
-        </div>
-
+        <div class="player-wrapper"></div>
         <input type="checkbox" name="answer" value="answer-${i}" id="a-${i}">
         <label class="genre-answer-check" for="a-${i}"></label>
       </div>`);
@@ -31,20 +30,14 @@ export default () => {
 
 
   const formGenre = `<form class="genre">
-
     ${options()}
-
     ${nextButton}
-
     </form>`;
-
   const screenElem = getElementFromTemplate(`<section class="main main--level main--level-genre">
+    ${svg}
     ${titleGenre}
-
     <form class="genre">
-
     ${formGenre}
-
     </form>
   </section>`);
 
@@ -62,6 +55,8 @@ export default () => {
   nextButton.addEventListener(`click`, (evt) => {
     renderInMain(result(randomValue()));
   });
+
+  window.initializeCountdown(screenElem);
 
   const allPlayers = screenElem.querySelectorAll(`.player-wrapper`);
   allPlayers.forEach((elem, index, array)=>{

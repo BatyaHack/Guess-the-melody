@@ -10,8 +10,6 @@ export default () => {
 
   const SHOW_ANSWER = 3;
 
-  const svgArtist = svg;
-
   const titleArtist = `<h2 class="title main-title">${data.artist.title}</h2>`;
 
   let randomMusic = getRandomMusic(music, SHOW_ANSWER);
@@ -35,23 +33,17 @@ export default () => {
 
   const screenElem = getElementFromTemplate(`
     <section class="main main--level main--level-artist">
-
-    ${svgArtist}
-
-
+      ${svg}
     <div class="main-wrap">
       <div class="main-timer"></div>
-
       ${titleArtist}
-
       <div class="player-wrapper"></div>
-
       ${formArtist}
-
     </div>
   </section>
   `);
 
+  window.initializeCountdown(screenElem);
   window.initializePlayer(screenElem, screenElem.querySelector(`.player-wrapper`), rightAnswer.resSrc);
   Array.from(screenElem.querySelectorAll(`.main-answer`)).forEach((elem, index, array) => {
     elem.addEventListener(`click`, (event)=>{
