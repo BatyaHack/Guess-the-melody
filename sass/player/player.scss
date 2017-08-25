@@ -19,6 +19,14 @@
   font-size: 0;
 }
 
+.player-status{
+  position: absolute;
+  z-index: 100;
+  display: block;
+  height: 53px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
 .player{
   &--is-playing{
     .player-control{
