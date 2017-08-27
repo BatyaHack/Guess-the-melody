@@ -1,11 +1,17 @@
 .genre-answer {
   display: flex;
   margin: 18px 0;
+  margin-left: 50px;
 }
 
 .player-wrapper {
   height: 55px;
   width: 410px;
+
+  &--artist{
+    width: 100%;
+    margin-left: 20px;
+  }
 }
 
 .genre-answer input[type=checkbox] {
@@ -17,6 +23,10 @@
   background: url("/img/icon-note-inactive.png") no-repeat;
   height: 49px;
   width: 35px;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 input[type=checkbox]:checked + .genre-answer-check {
@@ -33,8 +43,16 @@ input[type=checkbox]:checked + .genre-answer-check {
   margin: 20px auto 0;
   padding: 0 20px;
   text-align: center;
-}
+  cursor: pointer;
 
-.genre-answer-send:hover {
-  color: $color-orange;
+  &:hover{
+    color: $color-orange;
+  }
+
+  &--disable {
+    border-color: #a0a0a0;
+    &:hover{
+      color: $color-text-dark;
+    }
+  }
 }

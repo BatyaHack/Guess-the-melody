@@ -14,7 +14,7 @@ export default class ArtistView extends AbstractView {
     <div class="main-wrap">
       <div class="main-timer"></div>
       ${titleArtist}
-      <div class="player-wrapper"></div>
+      <div class="player-wrapper  player-wrapper--artist"></div>
       ${formArtist}
     </div>
   </section>`;
@@ -27,7 +27,6 @@ export default class ArtistView extends AbstractView {
       });
     });
   }
-
 
   nextLevel() {
 

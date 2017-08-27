@@ -30,6 +30,11 @@ export default class Genre {
 
     this.view.changeInput = () => {
       this.view.ansverButton.disabled = !this.view.answers.find((answer) => answer.checked === true);
+      if (this.view.ansverButton.disabled) {
+        this.view.ansverButton.classList.add(`genre-answer-send--disable`);
+      } else {
+        this.view.ansverButton.classList.remove(`genre-answer-send--disable`);
+      }
     };
 
     const allPlayers = (this.view.element.querySelectorAll(`.player-wrapper`));

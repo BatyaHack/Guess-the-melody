@@ -17,6 +17,10 @@
   width: 39px;
   margin-left: -50px;
   font-size: 0;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 .player-status{

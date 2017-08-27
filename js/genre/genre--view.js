@@ -21,6 +21,7 @@ export default class GenreView extends AbstractView {
 
   bind() {
     this.ansverButton = this.element.querySelector(`.genre-answer-send`);
+    this.ansverButton.classList.add(`genre-answer-send--disable`);
     this.ansverButton.disabled = true;
 
     this.ansverButton.addEventListener(`click`, (evt) => {
