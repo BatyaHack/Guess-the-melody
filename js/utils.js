@@ -4,13 +4,11 @@ export function getElementFromTemplate(html) {
   return template.content;
 }
 
-
 export function randomValue(min = 0, max = 1) {
   let rand = min + Math.random() * (max - min);
   rand = Math.floor(rand);
   return rand;
 }
-
 
 export function getRandomMusic(obj, countAnswer) {
   let randomMusic = obj.slice(0);
