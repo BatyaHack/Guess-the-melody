@@ -44,5 +44,6 @@ export default class Genre {
 
     renderInMain(this.view.element);
 
+    window.initializeCountdown(this.view.element);
   }
 }

@@ -1,5 +1,6 @@
 import AbstractView from '../view.js';
 import data from '../models/static.js';
+import svg from '../models/svg.js';
 
 export default class GenreView extends AbstractView {
   get template() {
@@ -10,7 +11,8 @@ export default class GenreView extends AbstractView {
 
     const formGenre = this.options.join(``);
 
-    return `<section class="main main--level main--level-genre">
+    return `${svg}
+    <section class="main main--level main--level-genre">
       ${titleGenre}
       <form class="genre">
       ${formGenre}
@@ -21,6 +23,7 @@ export default class GenreView extends AbstractView {
 
   bind() {
     this.ansverButton = this.element.querySelector(`.genre-answer-send`);
+    // Стоит ли оставлять это здесь???
     this.ansverButton.classList.add(`genre-answer-send--disable`);
     this.ansverButton.disabled = true;
 
