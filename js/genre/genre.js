@@ -1,7 +1,8 @@
 import GenreView from './genre--view.js';
+import Result from '../result/result.js';
 import {renderInMain} from '../modules/ScreenManager.js';
 import music from '../models/music.js';
-import {getRandomMusic} from '../utils.js';
+import {getRandomMusic, randomValue} from '../utils.js';
 
 
 export default class Genre {
@@ -23,6 +24,8 @@ export default class Genre {
 
     this.view.nextLevel = (evt) => {
       evt.preventDefault();
+      const result = new Result(randomValue(0, 2));
+      result.init();
     };
 
     this.view.changeInput = () => {

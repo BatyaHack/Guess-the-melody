@@ -8,12 +8,11 @@ export default class Welcome {
   }
 
   init() {
-
-    renderInMain(this.view.element);
-
     this.view.startGame = () => {
       const artist = new Artist();
       artist.init();
     };
+
+    renderInMain(this.view.element);
   }
 }
