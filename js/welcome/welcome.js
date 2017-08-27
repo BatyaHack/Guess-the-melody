@@ -1,4 +1,5 @@
 import WelocmeView from './welcome--view.js';
+import Artist from '../artist/artist.js';
 import {renderInMain} from '../modules/ScreenManager.js';
 
 export default class Welcome {
@@ -7,10 +8,12 @@ export default class Welcome {
   }
 
   init() {
+
     renderInMain(this.view.element);
 
     this.view.startGame = () => {
-      console.log(1);
+      const artist = new Artist();
+      artist.init();
     };
   }
 }

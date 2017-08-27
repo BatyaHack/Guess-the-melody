@@ -23,9 +23,7 @@ const redrawCircle = (circle, radius, animation) => {
   return circle;
 };
 
-
 const addLeadingZero = (val) => val < 10 ? `0${val}` : val;
-
 
 const redrawTimer = (timer, animation) => {
   const total = animation.stepDuration * animation.steps;
@@ -38,11 +36,10 @@ const redrawTimer = (timer, animation) => {
   return timer;
 };
 
-
 window.initializeCountdown = (template) => {
-  const element = template.querySelector(`.timer-line`);
+  const element = document.querySelector(`.timer-line`);
   const radius = parseInt(element.getAttributeNS(null, `r`), 10);
-  const timer = template.querySelector(`.timer-value`);
+  const timer = document.querySelector(`.timer-value`);
 
   return window.animation.animate(window.animation.getAnimation(0, 1000, 30), (animation) => {
     redrawCircle(element, radius, animation);
