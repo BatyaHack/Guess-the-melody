@@ -1,3 +1,5 @@
+import music from './models/music.js';
+
 export function getElementFromTemplate(html) {
   const template = document.createElement(`template`);
   template.innerHTML = html;
@@ -10,12 +12,23 @@ export function randomValue(min = 0, max = 1) {
   return rand;
 }
 
-export function getRandomMusic(obj, countAnswer) {
-  let randomMusic = obj.slice(0);
+export function getRandomMusic(countAnswer) {
+  const size = checkValue(countAnswer);
+  const randomMusic = music.slice(0);
   randomMusic.sort(getRandom);
-  return randomMusic.slice(0, countAnswer);
+  return {
+    randomMusic: randomMusic.slice(0, size),
+    rightAnswer: randomMusic[randomValue(0, size)],
+  };
 }
 
 function getRandom(a, b) {
   return Math.random() - 0.5;
+}
+
+function checkValue(value) {
+  if (value > music.length) {
+    value = music.length;
+  }
+  return value;
 }

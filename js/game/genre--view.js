@@ -3,13 +3,26 @@ import data from '../models/static.js';
 import svg from '../models/svg.js';
 
 export default class GenreView extends AbstractView {
+  constructor(dataSong) {
+    super();
+    this.dataSong = dataSong;
+  }
+
   get template() {
 
-    const titleGenre = `<h2 class="title">${data.genre.title}</h2>`;
+    const titleGenre = `<h2 class="title">Выберете ${this.dataSong.rightAnswer.ganre}</h2>`;
+
+    const answer = this.dataSong.allSongs.map((elem, index, arr) => {
+      return `<div class="genre-answer">
+              <div class="player-wrapper"></div>
+              <input type="checkbox" name="answer" value="${elem.ganre}" id="${elem.trackID}">
+              <label class="genre-answer-check" for="${elem.trackID}"></label>
+            </div>`;
+    });
 
     const nextButton = `<button class="genre-answer-send" type="submit">${data.buttons.answerButton}</button>`;
 
-    const formGenre = this.options.join(``);
+    const formGenre = answer.join(``);
 
     return `${svg}
     <section class="main main--level main--level-genre">
@@ -23,7 +36,6 @@ export default class GenreView extends AbstractView {
 
   bind() {
     this.ansverButton = this.element.querySelector(`.genre-answer-send`);
-    // Стоит ли оставлять это здесь???
     this.ansverButton.classList.add(`genre-answer-send--disable`);
     this.ansverButton.disabled = true;
 
