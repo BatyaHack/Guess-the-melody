@@ -4,7 +4,7 @@ import stats from '../models/gameStats.js';
 import ArtistView from './artist--view.js';
 import GenreView from './genre--view.js';
 import {setLive, setScore, setLevel} from '../models/mainLogic.js';
-import Result from '../result/result.js';
+import App from '../app.js';
 
 class Game {
   constructor(gameStats = stats) {
@@ -39,13 +39,12 @@ class Game {
   // добавит callback для таймера
   chekEndGame() {
     if (!this.gameStats.level || !this.gameStats.life) {
-      const result = new Result({
+      App.showStats({
         level: this.gameStats.level,
         life: this.gameStats.life,
         answers: this.gameStats.source,
       });
-      this.gameStats = stats;
-      result.init();
+      this.gameStats = stats; // после оканчания игры обнавляю статистику на инит
     } else {
       this.getRandomView();
       this.init();

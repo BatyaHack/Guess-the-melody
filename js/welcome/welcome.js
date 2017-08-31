@@ -1,17 +1,21 @@
 import WelocmeView from './welcome--view.js';
 import {renderInMain} from '../modules/ScreenManager.js';
-import Game from '../game/game.js';
+import App from '../app.js';
 
-export default class Welcome {
+class Welcome {
   constructor() {
-    this.view = new WelocmeView();
   }
 
   init() {
+    this.view = new WelocmeView();
+
     this.view.startGame = () => {
-      Game.chekEndGame();
+      App.showGame();
     };
 
     renderInMain(this.view.element);
   }
 }
+
+const welcome = new Welcome();
+export default welcome;

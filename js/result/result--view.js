@@ -9,7 +9,6 @@ export default class ResultView extends AbstractView {
 
   get template() {
     let html = null;
-
     if (this.result.life) { // win
       html = `<h2 class="title">${data.result.win.title}</h2>
       <div class="main-stat">${data.result.win.stats}</div>

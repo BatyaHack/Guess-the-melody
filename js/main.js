@@ -1,4 +1,3 @@
-import Welcome from './welcome/welcome.js';
+import app from './app.js';
 
-const welcome = new Welcome();
-welcome.init();
+app.showWelcome();

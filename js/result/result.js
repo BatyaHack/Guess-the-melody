@@ -1,18 +1,21 @@
 import ResultView from './result--view.js';
-import Welcome from '../welcome/welcome.js';
+import App from '../app.js';
 import {renderInMain} from '../modules/ScreenManager.js';
 
-export default class Result {
-  constructor(result = 0) { // по умолчанию loss
-    this.view = new ResultView(result);
+class Result {
+  constructor() {
   }
 
-  init() {
+  init(result) {
+    this.view = new ResultView(result);
+
     this.view.replayGame = () => {
-      const welcome = new Welcome();
-      welcome.init();
+      App.showWelcome();
     };
 
     renderInMain(this.view.element);
   }
 }
+
+const result = new Result();
+export default result;
