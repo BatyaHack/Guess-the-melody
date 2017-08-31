@@ -10,8 +10,7 @@ export default class ResultView extends AbstractView {
   get template() {
     let html = null;
 
-    // Мб поменять на тендорный оператор???
-    if (this.result) { // win
+    if (this.result.life) { // win
       html = `<h2 class="title">${data.result.win.title}</h2>
       <div class="main-stat">${data.result.win.stats}</div>
       <span class="main-comparison">${data.result.win.description}</span>`;

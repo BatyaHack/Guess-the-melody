@@ -16,6 +16,15 @@ export const setScore = (obj, value) => {
   return newGame;
 };
 
+export const setLevel = (obj, value) => {
+
+  checkValue(value);
+
+  const newGame = Object.assign({}, obj);
+  newGame.level = value;
+  return newGame;
+};
+
 function checkValue(value) {
   if (value < 0) {
     throw new RangeError(`not valid value`);

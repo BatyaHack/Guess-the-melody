@@ -1,14 +1,13 @@
 import {randomValue, getRandomMusic} from '../utils.js';
 import {renderInMain} from '../modules/ScreenManager.js';
-import music from '../models/music.js';
 import stats from '../models/gameStats.js';
 import ArtistView from './artist--view.js';
 import GenreView from './genre--view.js';
-import {setLive, setScore} from '../models/mainLogic.js';
+import {setLive, setScore, setLevel} from '../models/mainLogic.js';
+import Result from '../result/result.js';
 
 class Game {
   constructor(gameStats = stats) {
-    this.getRandomView();
     this.gameStats = gameStats;
   }
 
@@ -33,26 +32,45 @@ class Game {
     };
   }
 
+  minusLevel() {
+    this.gameStats = setLevel(this.gameStats, this.gameStats.level - 1);
+    return this.gameStats.level;
+  }
+  // добавит callback для таймера
+  chekEndGame() {
+    if (!this.gameStats.level || !this.gameStats.life) {
+      const result = new Result({
+        level: this.gameStats.level,
+        life: this.gameStats.life,
+        answers: this.gameStats.source,
+      });
+      this.gameStats = stats;
+      result.init();
+    } else {
+      this.getRandomView();
+      this.init();
+    }
+  }
+
   init() {
     this.view.nextLevel = (evt) => {
       evt.preventDefault();
       if (this.view.chekedAnswer(evt.currentTarget)) {
-
+        this.gameStats = setScore(this.gameStats, this.gameStats.score + 1);
       } else {
-
+        this.gameStats = setLive(this.gameStats, this.gameStats.life - 1);
       }
-      this.getRandomView();
-      this.init();
+      this.minusLevel(this.gameStats);
+      this.chekEndGame();
     };
 
-    if (this.view.changeInput !== undefined) {
+    if (this.view.changeInput) {
       this.setEventCheckBox();
     }
 
     this.view.initPlayer();
 
     renderInMain(this.view.element);
-
   }
 }
 const game = new Game();
