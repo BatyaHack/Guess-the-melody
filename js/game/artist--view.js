@@ -12,10 +12,10 @@ export default class ArtistView extends AbstractView {
 
     const titleArtist = `<h2 class="title main-title">${data.artist.title}</h2>`;
 
-    const answer = this.dataSong.allSongs.map((elem, index, arr) => {
+    const answer = this.dataSong.randomMusic.map((elem, index, arr) => {
       return `<div class="main-answer-wrapper">
             <input class="main-answer-r" type="radio" id="answer-${elem.trackID}" name="answer" value="${elem.trackID}" />
-              <label class="main-answer" for="answer-${elem.trackID}">
+              <label class="main-answer" for="answer-${elem.trackID}" value="${elem.trackID}">
                 <img class="main-answer-preview" src="${elem.imgSrc}">
                 ${elem.title}
               </label>
@@ -25,7 +25,7 @@ export default class ArtistView extends AbstractView {
     const formArtist = `<form class="main-list">${answer.join(``)}</form>`;
 
     return `<section class="main main--level main--level-artist">
-      ${svg}
+      
     <div class="main-wrap">
       <div class="main-timer"></div>
       ${titleArtist}
@@ -35,8 +35,11 @@ export default class ArtistView extends AbstractView {
   </section>`;
   }
 
-  chekedAnswer() {
-
+  chekedAnswer(target) {
+    if (target.attributes.value.value == this.dataSong.rightAnswer.trackID) {
+      return true;
+    }
+    return false;
   }
 
   bind() {
@@ -49,5 +52,9 @@ export default class ArtistView extends AbstractView {
 
   nextLevel(evt) {
 
+  }
+
+  initPlayer() {
+    window.initializePlayer(this.element.querySelector(`.player-wrapper`), this.dataSong.rightAnswer.resSrc);
   }
 }

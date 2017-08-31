@@ -36,24 +36,22 @@ class Game {
   init() {
     this.view.nextLevel = (evt) => {
       evt.preventDefault();
-      console.log(evt.target);
+      if (this.view.chekedAnswer(evt.currentTarget)) {
+
+      } else {
+
+      }
+      this.getRandomView();
+      this.init();
     };
 
     if (this.view.changeInput !== undefined) {
       this.setEventCheckBox();
     }
 
-    renderInMain(this.view.element);
+    this.view.initPlayer();
 
-    // БРЕЕЕЕЕЕЕД
-    const countPlayer = document.querySelectorAll(`.player-wrapper`);
-    if (countPlayer.length === 1) {
-      window.initializePlayer(document.querySelector(`.player-wrapper`), this.rightAnswer.resSrc);
-    } else {
-      countPlayer.forEach((elem, index, arr) => {
-        window.initializePlayer(elem, this.dataSong[index].resSrc);
-      });
-    }
+    renderInMain(this.view.element);
 
   }
 }

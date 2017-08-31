@@ -12,7 +12,7 @@ export default class GenreView extends AbstractView {
 
     const titleGenre = `<h2 class="title">Выберете ${this.dataSong.rightAnswer.ganre}</h2>`;
 
-    const answer = this.dataSong.allSongs.map((elem, index, arr) => {
+    const answer = this.dataSong.randomMusic.map((elem, index, arr) => {
       return `<div class="genre-answer">
               <div class="player-wrapper"></div>
               <input type="checkbox" name="answer" value="${elem.ganre}" id="${elem.trackID}">
@@ -24,8 +24,7 @@ export default class GenreView extends AbstractView {
 
     const formGenre = answer.join(``);
 
-    return `${svg}
-    <section class="main main--level main--level-genre">
+    return `<section class="main main--level main--level-genre">
       ${titleGenre}
       <form class="genre">
       ${formGenre}
@@ -57,5 +56,30 @@ export default class GenreView extends AbstractView {
 
   changeInput() {
 
+  }
+  // БРЕЕЕЕЕЕД!
+  chekedAnswer(evt) {
+    const allCheck = this.answers.filter((elem, index, arr) => {
+      return elem.checked;
+    });
+
+    const allNeedGenre = this.answers.filter((elem, index, arr) => {
+      return elem.defaultValue === this.dataSong.rightAnswer.ganre;
+    });
+
+    const allNeedCheckGenre = this.answers.filter((elem, index, arr) => {
+      return elem.defaultValue === this.dataSong.rightAnswer.ganre && elem.checked;
+    });
+
+    if (allNeedGenre.length === allNeedCheckGenre.length && allNeedCheckGenre.length === allCheck.length) {
+      return true;
+    }
+    return false;
+  }
+
+  initPlayer() {
+    this.element.querySelectorAll(`.player-wrapper`).forEach((elem, index, arr) => {
+      window.initializePlayer(elem, this.dataSong.randomMusic[index].resSrc);
+    });
   }
 }
