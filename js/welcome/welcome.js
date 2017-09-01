@@ -1,6 +1,6 @@
 import WelocmeView from './welcome--view.js';
 import {renderInMain} from '../modules/ScreenManager.js';
-import App from '../app.js';
+import App from '../main.js';
 
 class Welcome {
   constructor() {

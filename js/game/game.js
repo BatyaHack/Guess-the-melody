@@ -4,11 +4,14 @@ import stats from '../models/gameStats.js';
 import ArtistView from './artist--view.js';
 import GenreView from './genre--view.js';
 import {setLive, setScore, setLevel} from '../models/mainLogic.js';
-import App from '../app.js';
+import App from '../main.js';
 
 class Game {
   constructor(gameStats = stats) {
     this.gameStats = gameStats;
+    // window.callBackTimer = () => {
+    //   App.showStats(this.gameStats);
+    // };
   }
 
   getRandomView() {
@@ -39,11 +42,7 @@ class Game {
   // добавит callback для таймера
   chekEndGame() {
     if (!this.gameStats.level || !this.gameStats.life) {
-      App.showStats({
-        level: this.gameStats.level,
-        life: this.gameStats.life,
-        answers: this.gameStats.source,
-      });
+      App.showStats(this.gameStats);
       this.gameStats = stats; // после оканчания игры обнавляю статистику на инит
     } else {
       this.getRandomView();

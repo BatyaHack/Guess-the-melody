@@ -25,7 +25,6 @@ export default class GenreView extends AbstractView {
     const formGenre = answer.join(``);
 
     return `<section class="main main--level main--level-genre">
-      ${svg}
       ${titleGenre}
       <form class="genre">
       ${formGenre}
