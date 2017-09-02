@@ -1,6 +1,5 @@
 import AbstractView from '../view.js';
 import data from '../models/static.js';
-import svg from '../models/svg.js';
 
 export default class ArtistView extends AbstractView {
   constructor(dataSong) {

@@ -1,6 +1,5 @@
 import AbstractView from '../view.js';
 import data from '../models/static.js';
-import svg from '../models/svg.js';
 
 export default class GenreView extends AbstractView {
   constructor(dataSong) {
@@ -9,7 +8,6 @@ export default class GenreView extends AbstractView {
   }
 
   get template() {
-
     const titleGenre = `<h2 class="title">Выберете ${this.dataSong.rightAnswer.ganre}</h2>`;
 
     const answer = this.dataSong.randomMusic.map((elem, index, arr) => {
@@ -57,21 +55,15 @@ export default class GenreView extends AbstractView {
   changeInput() {
 
   }
-  // БРЕЕЕЕЕЕД!
+
   chekedAnswer(evt) {
-    const allCheck = this.answers.filter((elem, index, arr) => {
-      return elem.checked;
+    const allNeedAnswerCheck = this.answers.filter((elem, index, arr) => {
+      return (elem.value === this.dataSong.rightAnswer.ganre) && elem.checked;
     });
-
-    const allNeedGenre = this.answers.filter((elem, index, arr) => {
-      return elem.defaultValue === this.dataSong.rightAnswer.ganre;
+    const allRigrhAnswer = this.dataSong.randomMusic.filter((elem, index, arr) => {
+      return elem.ganre === this.dataSong.rightAnswer.ganre;
     });
-
-    const allNeedCheckGenre = this.answers.filter((elem, index, arr) => {
-      return elem.defaultValue === this.dataSong.rightAnswer.ganre && elem.checked;
-    });
-
-    if (allNeedGenre.length === allNeedCheckGenre.length && allNeedCheckGenre.length === allCheck.length) {
+    if (allNeedAnswerCheck.length === allRigrhAnswer.length) {
       return true;
     }
     return false;
