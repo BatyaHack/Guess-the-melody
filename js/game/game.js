@@ -9,9 +9,6 @@ import App from '../main.js';
 class Game {
   constructor(gameStats = stats) {
     this.gameStats = gameStats;
-    // window.callBackTimer = () => {
-    //   App.showStats(this.gameStats);
-    // };
   }
 
   getRandomView() {
@@ -39,7 +36,7 @@ class Game {
     this.gameStats = setLevel(this.gameStats, this.gameStats.level - 1);
     return this.gameStats.level;
   }
-  // добавит callback для таймера
+
   chekEndGame() {
     if (!this.gameStats.level || !this.gameStats.life) {
       App.showStats(this.gameStats);

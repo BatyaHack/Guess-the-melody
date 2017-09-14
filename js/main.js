@@ -1,6 +1,7 @@
 import Welcome from './welcome/welcome.js';
 import Game from './game/game.js';
 import Result from './result/result.js';
+import Timer from './timer/timer.js';
 
 const ControllerID = {
   WELCOME: ``,
@@ -15,11 +16,7 @@ class App {
   static changePresenter(hash = ``) {
     switch (hash) {
       case ControllerID.GAME:
-        Game.chekEndGame(); // постараться правильно переделать init
-        // window.initializeCountdown();
-        // setTimeout(() => {
-        //   window.callBackTimer();
-        // }, 3000);
+        Game.chekEndGame();
         break;
       case ControllerID.RESULT:
         Result.init(this.stastData);
@@ -34,9 +31,11 @@ class App {
     location.hash = ControllerID.WELCOME;
   }
   static showGame() {
+    Timer.init();
     location.hash = ControllerID.GAME;
   }
   static showStats(stats) {
+    Timer.destroy();
     this.stastData = stats;
     location.hash = ControllerID.RESULT;
   }

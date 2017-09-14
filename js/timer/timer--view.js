@@ -20,7 +20,7 @@ export default class TimerView extends View {
      <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
        <span class="timer-value-mins">${this.time.min}</span><!--
        --><span class="timer-value-dots">:</span><!--
-       --><span class="timer-value-secs">${this.tiem.sec}</span>
+       --><span class="timer-value-secs">${this.time.sec}</span>
      </div>
     </svg>`;
   }

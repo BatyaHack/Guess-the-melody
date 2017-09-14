@@ -11,8 +11,8 @@ export default class ResultView extends AbstractView {
     let html = null;
     if (this.result.life) { // win
       html = `<h2 class="title">${data.result.win.title}</h2>
-      <div class="main-stat">${data.result.win.stats}</div>
-      <span class="main-comparison">${data.result.win.description}</span>`;
+      <div class="main-stat">За&nbsp;${this.result.time}&nbsp;минуты<br>вы&nbsp;отгадали ${this.result.score}&nbsp;мелодии</div>
+      <span class="main-comparison">Это&nbsp;лучше чем у&nbsp;80%&nbsp;игроков</span>`;
     } else { // losse
       html = `<h2 class="title">${data.result.loss.title}</h2>
       <div class="main-stat">${data.result.loss.description}</div>`;
