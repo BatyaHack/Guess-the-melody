@@ -26,7 +26,7 @@ export default class TimerView extends View {
   }
 
   redrawTimer(time, timePas) {
-    this.time = convertTime(this.time - timePas);
+    this.time = convertTime(time - timePas);
     this.timerMin.textContent = this.time.min;
     this.timerMin.timerSec = this.time.sec;
 
