@@ -32,18 +32,18 @@ function checkValue(value) {
 }
 
 export const statistic = [
-  {time: 20, answers: 10},
-  {time: 32, answers: 10},
-  {time: 44, answers: 10},
-  {time: 20, answers: 8},
-  {time: 50, answers: 7},
+  {time: 20, score: 10},
+  {time: 32, score: 10},
+  {time: 44, score: 10},
+  {time: 20, score: 8},
+  {time: 50, score: 7},
 ];
 
 export const getResultGame = (generalStatistics, ojbResultGame) =>{
 
   // утиная типизация
   /*eslint-disable */
-  if (ojbResultGame.time === undefined || ojbResultGame.answers === undefined) {
+  if (ojbResultGame.time === undefined || ojbResultGame.score === undefined) {
   /*eslint-enable */
     throw new TypeError(`Game object not have time or answers`);
   }
@@ -54,13 +54,13 @@ export const getResultGame = (generalStatistics, ojbResultGame) =>{
 
   // Сортируем что бы получить рейтинг
   stats.sort((a, b) => {
-    return (a.answers / a.time) < (b.answers / b.time);
+    return (a.score / a.time) < (b.score / b.time);
   });
 
   // Находим последниюю игру уже в рейтинге
   let lastGame = null;
   stats.find((elem, index, arr) => {
-    if (elem.time === ojbResultGame.time && elem.answers === ojbResultGame.answers) {
+    if (elem.time === ojbResultGame.time && elem.score === ojbResultGame.score) {
       lastGame = index;
       return true;
     }
@@ -70,5 +70,5 @@ export const getResultGame = (generalStatistics, ojbResultGame) =>{
   // Вернем рейтинг
   const playersBelow = stats.length - (lastGame + 1);
 
-  return (playersBelow / stats.length).toFixed(1);
+  return (playersBelow / stats.length).toFixed(2) * 100; // 100 - что бы получить целое
 };

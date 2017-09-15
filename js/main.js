@@ -2,6 +2,7 @@ import Welcome from './welcome/welcome.js';
 import Game from './game/game.js';
 import Result from './result/result.js';
 import Timer from './timer/timer.js';
+import {statistic, getResultGame} from './models/mainLogic.js';
 
 const ControllerID = {
   WELCOME: ``,
@@ -19,7 +20,7 @@ class App {
         Game.chekEndGame();
         break;
       case ControllerID.RESULT:
-        Result.init(this.stastData);
+        Result.init(this.stastData, this.winnerProcent);
         break;
       default:
         Welcome.init();
@@ -37,6 +38,7 @@ class App {
   static showStats(stats) {
     Timer.destroy();
     this.stastData = stats;
+    this.winnerProcent = getResultGame(statistic, this.stastData);
     location.hash = ControllerID.RESULT;
   }
 
