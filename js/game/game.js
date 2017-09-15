@@ -5,6 +5,7 @@ import ArtistView from './artist--view.js';
 import GenreView from './genre--view.js';
 import {setLive, setScore, setLevel} from '../models/mainLogic.js';
 import App from '../main.js';
+import Timer from '../timer/timer.js';
 
 class Game {
   constructor(gameStats = stats) {
@@ -39,6 +40,7 @@ class Game {
 
   chekEndGame() {
     if (!this.gameStats.level || !this.gameStats.life) {
+      this.gameStats.time = Timer.getGameTime();
       App.showStats(this.gameStats);
       this.gameStats = stats; // после оканчания игры обнавляю статистику на инит
     } else {

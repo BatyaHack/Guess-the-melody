@@ -28,7 +28,7 @@ export default class TimerView extends View {
   redrawTimer(time, timePas) {
     this.time = convertTime(time - timePas);
     this.timerMin.textContent = this.time.min;
-    this.timerMin.timerSec = this.time.sec;
+    this.timerSec.textContent = this.time.sec;
 
     const radius = parseInt(this.circle.getAttributeNS(null, `r`), 10);
     const length = 2 * Math.PI * radius;
