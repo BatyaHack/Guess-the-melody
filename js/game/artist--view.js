@@ -53,6 +53,6 @@ export default class ArtistView extends AbstractView {
   }
 
   initPlayer() {
-    window.initializePlayer(this.element.querySelector(`.player-wrapper`), this.dataSong.rightAnswer.resSrc);
+    window.initializePlayer(document.querySelector(`.player-wrapper`), this.dataSong.rightAnswer.resSrc);
   }
 }

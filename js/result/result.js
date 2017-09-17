@@ -2,7 +2,7 @@ import ResultView from './result--view.js';
 import App from '../main.js';
 import {renderInMain} from '../modules/ScreenManager.js';
 
-class Result {
+export default class Result {
   constructor() {
   }
 
@@ -15,6 +15,3 @@ class Result {
     renderInMain(this.view.element);
   }
 }
-
-const result = new Result();
-export default result;

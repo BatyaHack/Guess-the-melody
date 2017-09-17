@@ -70,7 +70,7 @@ export default class GenreView extends AbstractView {
   }
 
   initPlayer() {
-    this.element.querySelectorAll(`.player-wrapper`).forEach((elem, index, arr) => {
+    document.querySelectorAll(`.player-wrapper`).forEach((elem, index, arr) => {
       window.initializePlayer(elem, this.dataSong.randomMusic[index].resSrc);
     });
   }

@@ -12,9 +12,6 @@ export default class Model {
     return fetch(this.urlRead())
       .then((statistic) => {
         return statistic.json();
-      })
-      .then((data) => {
-        return data;
       });
   }
 

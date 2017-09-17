@@ -7,7 +7,7 @@ import {setLive, setScore, setLevel} from '../models/mainLogic.js';
 import App from '../main.js';
 import Timer from '../timer/timer.js';
 
-class Game {
+export default class Game {
   constructor(gameStats = stats) {
     this.gameStats = gameStats;
   }
@@ -38,37 +38,36 @@ class Game {
     return this.gameStats.level;
   }
 
-  chekEndGame() {
-    if (!this.gameStats.level || !this.gameStats.life) {
-      this.gameStats.time = Timer.getGameTime();
-      App.showStats(this.gameStats);
-      this.gameStats = stats; // после оканчания игры обнавляю статистику на инит
+  chekEndGame(evt) {
+    if (this.view.chekedAnswer(evt.currentTarget)) {
+      this.gameStats = setScore(this.gameStats, this.gameStats.score + 1);
     } else {
-      this.getRandomView();
-      this.init();
+      this.gameStats = setLive(this.gameStats, this.gameStats.life - 1);
     }
+    this.minusLevel(this.gameStats);
+    this.init();
   }
 
   init() {
+    // if (!this.gameStats.level || !this.gameStats.life) {
+    //   this.gameStats.time = Timer.getGameTime();
+    //   App.showStats(this.gameStats);
+    //   this.gameStats = stats; // после оканчания игры обнавляю статистику на инит
+    // } else {
+    // }
+    this.getRandomView();
+    renderInMain(this.view.element);
+
+    this.view.initPlayer();
+
     this.view.nextLevel = (evt) => {
       evt.preventDefault();
-      if (this.view.chekedAnswer(evt.currentTarget)) {
-        this.gameStats = setScore(this.gameStats, this.gameStats.score + 1);
-      } else {
-        this.gameStats = setLive(this.gameStats, this.gameStats.life - 1);
-      }
-      this.minusLevel(this.gameStats);
-      this.chekEndGame();
+      this.chekEndGame(evt);
     };
 
     if (this.view.changeInput) {
       this.setEventCheckBox();
     }
 
-    this.view.initPlayer();
-
-    renderInMain(this.view.element);
   }
 }
-const game = new Game();
-export default game;
