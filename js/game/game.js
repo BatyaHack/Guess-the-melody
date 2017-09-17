@@ -9,7 +9,7 @@ import Timer from '../timer/timer.js';
 
 export default class Game {
   constructor(gameStats = stats) {
-    this.gameStats = gameStats;
+    this.gameStats = stats;
   }
 
   getRandomView() {
@@ -44,17 +44,19 @@ export default class Game {
     } else {
       this.gameStats = setLive(this.gameStats, this.gameStats.life - 1);
     }
+
     this.minusLevel(this.gameStats);
+
+    if (!this.gameStats.level || !this.gameStats.life) {
+      this.gameStats.time = Timer.getGameTime();
+      App.showStats(this.gameStats);
+      this.gameStats = stats;
+    }
+
     this.init();
   }
 
   init() {
-    // if (!this.gameStats.level || !this.gameStats.life) {
-    //   this.gameStats.time = Timer.getGameTime();
-    //   App.showStats(this.gameStats);
-    //   this.gameStats = stats; // после оканчания игры обнавляю статистику на инит
-    // } else {
-    // }
     this.getRandomView();
     renderInMain(this.view.element);
 

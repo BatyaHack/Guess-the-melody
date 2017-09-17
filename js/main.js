@@ -29,8 +29,8 @@ class App {
   setup(data) {
     this.routes = {
       [ControllerID.WELCOME]: new Welcome(),
-      [ControllerID.GAME]: new Game(), // передать игровую дату
-      [ControllerID.RESULT]: new Result(), // передать статистику
+      [ControllerID.GAME]: new Game(),
+      [ControllerID.RESULT]: new Result(),
     };
 
     window.onhashchange = () => {
@@ -41,7 +41,17 @@ class App {
   }
 
   changeController(route = ``) {
-    this.routes[route].init();
+    switch (route) {
+      case ControllerID.WELCOME:
+        this.routes[route].init();
+        break;
+      case ControllerID.GAME:
+        this.routes[route].init(); // тут дата
+        break;
+      case ControllerID.RESULT:
+        this.routes[route].init(this.stastData, this.winnerProcent); // и тут дата и стата
+        break;
+    }
   }
 
   showWelcome() {
