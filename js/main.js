@@ -3,6 +3,7 @@ import Game from './game/game.js';
 import Result from './result/result.js';
 import Timer from './timer/timer.js';
 import {statistic, getResultGame} from './models/mainLogic.js';
+import Model from './model.js';
 
 const ControllerID = {
   WELCOME: ``,
@@ -13,6 +14,8 @@ const ControllerID = {
 const getControllerFromHash = (hash) => hash.replace(`#`, ``);
 
 class App {
+  constructor() {
+  }
 
   static changePresenter(hash = ``) {
     switch (hash) {
@@ -49,7 +52,23 @@ class App {
     // для того что бы сразу подгружать с url
     this.changePresenter(getControllerFromHash(location.hash));
   }
+
+  static checkData() {
+    this.model = new class extends Model {
+      urlRead() {
+        return `http://backendformelody/users`;
+      }
+    }();
+    this.model.load()
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(() => {
+        console.error(`Ups! U have porblems`);
+      });
+  }
 }
 
 App.init();
+App.checkData();
 export default App;
